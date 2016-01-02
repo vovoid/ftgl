@@ -25,7 +25,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "config.h"
+#include <ftgl_config.h>
 
 #include "FTInternals.h"
 
@@ -67,7 +67,7 @@ void ftglDestroyLayout(FTGLlayout *l)
 {
     if(!l || !l->ptr)
     {
-        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __FUNC__);
+        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __func__);
         return;
     }
     delete l->ptr;
@@ -100,13 +100,13 @@ void ftglSetLayoutFont(FTGLlayout *l, FTGLfont *font)
 {
     if(!l || !l->ptr)
     {
-        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __FUNC__);
+        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __func__);
         return;
     }
     if(l->type != FTGL::LAYOUT_SIMPLE)
     {
         fprintf(stderr, "FTGL warning: %s not implemented for %d\n",
-                        __FUNC__, l->type);
+                        __func__, l->type);
     }
     l->font = font;
     return dynamic_cast<FTSimpleLayout*>(l->ptr)->SetFont(font->ptr);
@@ -117,13 +117,13 @@ FTGLfont *ftglGetLayoutFont(FTGLlayout *l)
 {
     if(!l || !l->ptr)
     {
-        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __FUNC__);
+        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __func__);
         return NULL;
     }
     if(l->type != FTGL::LAYOUT_SIMPLE)
     {
         fprintf(stderr, "FTGL warning: %s not implemented for %d\n",
-                        __FUNC__, l->type);
+                        __func__, l->type);
     }
     return l->font;
 }
@@ -141,7 +141,7 @@ FTGLfont *ftglGetLayoutFont(FTGLlayout *l)
         if(l->type != FTGL::LAYOUT_SIMPLE) \
         { \
             fprintf(stderr, "FTGL warning: %s not implemented for %d\n", \
-                            __FUNC__, l->type); \
+                            __func__, l->type); \
             cxxerr; \
         } \
         return dynamic_cast<FTSimpleLayout*>(l->ptr)->cxxname cxxarg; \

@@ -25,7 +25,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "config.h"
+#include <ftgl_config.h>
 
 #include "FTInternals.h"
 
@@ -151,7 +151,7 @@ void ftglDestroyFont(FTGLfont *f)
 {
     if(!f || !f->ptr)
     {
-        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __FUNC__);
+        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __func__);
         return;
     }
     delete f->ptr;

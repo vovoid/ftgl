@@ -24,7 +24,7 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "config.h"
+#include <ftgl_config.h>
 
 #include "FTGL/ftgl.h"
 
@@ -150,7 +150,7 @@ void ftglDestroyGlyph(FTGLglyph *g)
 {
     if(!g || !g->ptr)
     {
-        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __FUNC__);
+        fprintf(stderr, "FTGL warning: NULL pointer in %s\n", __func__);
         return;
     }
     delete g->ptr;

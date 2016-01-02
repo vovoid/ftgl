@@ -43,6 +43,6 @@
 #define _POSIX_ 1
 
 // use __FUNCTION__
-#define __FUNC__ __FUNCTION__
+#define __func__ __FUNCTION__
 
 #define PACKAGE_VERSION "2.2.0"
