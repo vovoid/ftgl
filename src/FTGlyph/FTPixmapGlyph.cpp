@@ -136,6 +136,7 @@ FTPixmapGlyphImpl::~FTPixmapGlyphImpl()
 const FTPoint& FTPixmapGlyphImpl::RenderImpl(const FTPoint& pen,
                                              int renderMode)
 {
+  (void)renderMode;
     if(data)
     {
         float dx, dy;
