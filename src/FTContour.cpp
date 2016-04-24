@@ -29,6 +29,7 @@
 
 #include "FTContour.h"
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 
 static const unsigned int BEZIER_STEPS = 5;

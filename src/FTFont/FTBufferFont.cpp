@@ -186,7 +186,11 @@ inline char *StringCopy(char const *s, int len)
 {
     if(len < 0)
     {
-        return strdup(s);
+#ifdef _MSC_VER
+      return _strdup(s);
+#else
+      return strdup(s);
+#endif
     }
     else
     {
