@@ -165,6 +165,7 @@ FTTextureGlyphImpl::~FTTextureGlyphImpl()
 const FTPoint& FTTextureGlyphImpl::RenderImpl(const FTPoint& pen,
                                               int renderMode)
 {
+  (void)renderMode;
     float dx, dy;
 
     if(activeTextureID != glTextureID)
