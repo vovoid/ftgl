@@ -117,7 +117,7 @@ const FTPoint& FTTriangleExtractorGlyphImpl::RenderImpl(const FTPoint& pen,
                 AddVertex(pen, subMesh->Point(0));
                 for(unsigned int i = 0; i < subMesh->PointCount(); ++i)
                     AddVertex(pen, subMesh->Point(i));
-                AddVertex(pen, subMesh->Point(subMesh->PointCount() - 1));
+                AddVertex(pen, subMesh->Point((unsigned int)subMesh->PointCount() - 1));
                 break;
             case GL_TRIANGLES:
                 assert(subMesh->PointCount() % 3 == 0);
@@ -158,8 +158,8 @@ const FTPoint& FTTriangleExtractorGlyphImpl::RenderImpl(const FTPoint& pen,
 
 void FTTriangleExtractorGlyphImpl::AddVertex(const FTPoint& pen, const FTPoint& point)
 {
-    triangles_.push_back(pen.Xf() + point.Xf() / 64.0);
-    triangles_.push_back(pen.Yf() + point.Yf() / 64.0);
+    triangles_.push_back(pen.Xf() + point.Xf() / 64.0f);
+    triangles_.push_back(pen.Yf() + point.Yf() / 64.0f);
     triangles_.push_back(pen.Zf());
 }
 
