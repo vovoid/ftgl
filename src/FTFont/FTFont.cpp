@@ -492,7 +492,28 @@ inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
 
         if(CheckGlyph(thisChar))
         {
-            position += glyphList->Render(thisChar, nextChar,
+          if (thisChar == 1 && dynamic_cast<FTTextureFontImpl*>(this))
+          {
+            thisChar = *ustr++;
+            nextChar = *ustr;
+            i++;
+            float r = (float)thisChar / 255.0f;
+            thisChar = *ustr++;
+            nextChar = *ustr;
+            i++;
+            float g = (float)thisChar / 255.0f;
+            thisChar = *ustr++;
+            nextChar = *ustr;
+            i++;
+            float b = (float)thisChar / 255.0f;
+            thisChar = *ustr++;
+            nextChar = *ustr;
+            i++;
+            float a = (float)thisChar / 255.0f;
+            glColor4f(r,g,b,a);
+            continue;
+          }
+          position += glyphList->Render(thisChar, nextChar,
                                           position, renderMode);
         }
 
