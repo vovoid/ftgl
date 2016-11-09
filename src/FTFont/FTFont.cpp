@@ -490,29 +490,34 @@ inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
         unsigned int thisChar = *ustr++;
         unsigned int nextChar = *ustr;
 
+        if (
+          thisChar == 1 && dynamic_cast<FTTextureFontImpl*>(this)
+          ||
+          thisChar == 2 && dynamic_cast<FTOutlineFontImpl*>(this)
+        )
+        {
+          thisChar = *ustr++;
+          nextChar = *ustr;
+          i++;
+          float r = (float)thisChar / 255.0f;
+          thisChar = *ustr++;
+          nextChar = *ustr;
+          i++;
+          float g = (float)thisChar / 255.0f;
+          thisChar = *ustr++;
+          nextChar = *ustr;
+          i++;
+          float b = (float)thisChar / 255.0f;
+          thisChar = *ustr++;
+          nextChar = *ustr;
+          i++;
+          float a = (float)thisChar / 255.0f;
+          glColor4f(r,g,b,a);
+          continue;
+        }
+
         if(CheckGlyph(thisChar))
         {
-          if (thisChar == 1 && dynamic_cast<FTTextureFontImpl*>(this))
-          {
-            thisChar = *ustr++;
-            nextChar = *ustr;
-            i++;
-            float r = (float)thisChar / 255.0f;
-            thisChar = *ustr++;
-            nextChar = *ustr;
-            i++;
-            float g = (float)thisChar / 255.0f;
-            thisChar = *ustr++;
-            nextChar = *ustr;
-            i++;
-            float b = (float)thisChar / 255.0f;
-            thisChar = *ustr++;
-            nextChar = *ustr;
-            i++;
-            float a = (float)thisChar / 255.0f;
-            glColor4f(r,g,b,a);
-            continue;
-          }
           position += glyphList->Render(thisChar, nextChar,
                                           position, renderMode);
         }
