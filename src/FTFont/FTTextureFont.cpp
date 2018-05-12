@@ -237,7 +237,7 @@ bool FTTextureFontImpl::FaceSize(const unsigned int size, const unsigned int res
 template <typename T>
 inline FTPoint FTTextureFontImpl::RenderI(const T* string, const int len,
                                           FTPoint position, FTPoint spacing,
-                                          int renderMode)
+                                          int renderMode, float alpha)
 {
     // Protect GL_TEXTURE_2D
     glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_TEXTURE_ENV_MODE);
@@ -248,7 +248,7 @@ inline FTPoint FTTextureFontImpl::RenderI(const T* string, const int len,
     FTTextureGlyphImpl::ResetActiveTexture();
 
     FTPoint tmp = FTFontImpl::Render(string, len,
-                                     position, spacing, renderMode);
+                                     position, spacing, renderMode, alpha);
 
     glPopAttrib();
 
@@ -258,16 +258,16 @@ inline FTPoint FTTextureFontImpl::RenderI(const T* string, const int len,
 
 FTPoint FTTextureFontImpl::Render(const char * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTTextureFontImpl::Render(const wchar_t * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 

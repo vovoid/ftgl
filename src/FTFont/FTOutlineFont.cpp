@@ -91,7 +91,7 @@ FTOutlineFontImpl::FTOutlineFontImpl(FTFont *ftFont,
 template <typename T>
 inline FTPoint FTOutlineFontImpl::RenderI(const T* string, const int len,
                                           FTPoint position, FTPoint spacing,
-                                          int renderMode)
+                                          int renderMode, float alpha)
 {
     // Protect GL_TEXTURE_2D, glHint() and GL_LINE_SMOOTH
     glPushAttrib(GL_ENABLE_BIT | GL_HINT_BIT | GL_LINE_BIT
@@ -102,7 +102,7 @@ inline FTPoint FTOutlineFontImpl::RenderI(const T* string, const int len,
     glHint(GL_LINE_SMOOTH_HINT, GL_DONT_CARE);
 
     FTPoint tmp = FTFontImpl::Render(string, len,
-                                     position, spacing, renderMode);
+                                     position, spacing, renderMode, alpha);
 
     glPopAttrib();
 
@@ -112,16 +112,16 @@ inline FTPoint FTOutlineFontImpl::RenderI(const T* string, const int len,
 
 FTPoint FTOutlineFontImpl::Render(const char * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTOutlineFontImpl::Render(const wchar_t * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 

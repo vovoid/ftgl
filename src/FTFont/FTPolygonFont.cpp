@@ -91,7 +91,7 @@ FTPolygonFontImpl::FTPolygonFontImpl(FTFont *ftFont,
 template <typename T>
 inline FTPoint FTPolygonFontImpl::RenderI(const T* string, const int len,
                                           FTPoint position, FTPoint spacing,
-                                          int renderMode)
+                                          int renderMode, float alpha)
 {
     // Protect GL_POLYGON
     glPushAttrib(GL_POLYGON_BIT);
@@ -101,7 +101,7 @@ inline FTPoint FTPolygonFontImpl::RenderI(const T* string, const int len,
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     FTPoint tmp = FTFontImpl::Render(string, len,
-                                     position, spacing, renderMode);
+                                     position, spacing, renderMode, alpha);
 
     glPopAttrib();
 
@@ -111,16 +111,16 @@ inline FTPoint FTPolygonFontImpl::RenderI(const T* string, const int len,
 
 FTPoint FTPolygonFontImpl::Render(const char * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTPolygonFontImpl::Render(const wchar_t * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 

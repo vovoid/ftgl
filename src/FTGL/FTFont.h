@@ -343,7 +343,8 @@ class FTGL_EXPORT FTFont
         virtual FTPoint Render(const char* string, const int len = -1,
                                FTPoint position = FTPoint(),
                                FTPoint spacing = FTPoint(),
-                               int renderMode = FTGL::RENDER_ALL);
+                               int renderMode = FTGL::RENDER_ALL,
+                               float alpha = 1);
 
         /**
          * Render a string of characters
@@ -368,7 +369,8 @@ class FTGL_EXPORT FTFont
         virtual FTPoint Render(const wchar_t *string, const int len = -1,
                                FTPoint position = FTPoint(),
                                FTPoint spacing = FTPoint(),
-                               int renderMode = FTGL::RENDER_ALL);
+                               int renderMode = FTGL::RENDER_ALL,
+                               float alpha = 1);
 
         /**
          * Queries the Font for errors.

@@ -82,7 +82,7 @@ FTPixmapFontImpl::FTPixmapFontImpl(FTFont *ftFont,
 template <typename T>
 inline FTPoint FTPixmapFontImpl::RenderI(const T* string, const int len,
                                          FTPoint position, FTPoint spacing,
-                                         int renderMode)
+                                         int renderMode, float alpha)
 {
     // Protect GL_TEXTURE_2D and glPixelTransferf()
     glPushAttrib(GL_ENABLE_BIT | GL_PIXEL_MODE_BIT | GL_COLOR_BUFFER_BIT
@@ -105,7 +105,7 @@ inline FTPoint FTPixmapFontImpl::RenderI(const T* string, const int len,
     glPixelTransferf(GL_ALPHA_SCALE, ftglColour[3]);
 
     FTPoint tmp = FTFontImpl::Render(string, len,
-                                     position, spacing, renderMode);
+                                     position, spacing, renderMode, alpha);
 
     glPopClientAttrib();
     glPopAttrib();
@@ -116,16 +116,16 @@ inline FTPoint FTPixmapFontImpl::RenderI(const T* string, const int len,
 
 FTPoint FTPixmapFontImpl::Render(const char * string, const int len,
                                  FTPoint position, FTPoint spacing,
-                                 int renderMode)
+                                 int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTPixmapFontImpl::Render(const wchar_t * string, const int len,
                                  FTPoint position, FTPoint spacing,
-                                 int renderMode)
+                                 int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 

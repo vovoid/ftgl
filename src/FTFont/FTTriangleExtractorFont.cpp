@@ -91,10 +91,10 @@ FTTriangleExtractorFontImpl::FTTriangleExtractorFontImpl(FTFont *ftFont,
 template <typename T>
 inline FTPoint FTTriangleExtractorFontImpl::RenderI(const T* string, const int len,
                                           FTPoint position, FTPoint spacing,
-                                          int renderMode)
+                                          int renderMode, float alpha)
 {
     FTPoint tmp = FTFontImpl::Render(string, len,
-                                     position, spacing, renderMode);
+                                     position, spacing, renderMode, alpha);
 
     return tmp;
 }
@@ -102,17 +102,17 @@ inline FTPoint FTTriangleExtractorFontImpl::RenderI(const T* string, const int l
 
 FTPoint FTTriangleExtractorFontImpl::Render(const char * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTTriangleExtractorFontImpl::Render(const wchar_t * string, const int len,
                                   FTPoint position, FTPoint spacing,
-                                  int renderMode)
+                                  int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 

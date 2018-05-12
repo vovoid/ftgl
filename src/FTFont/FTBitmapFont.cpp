@@ -66,7 +66,7 @@ FTGlyph* FTBitmapFont::MakeGlyph(FT_GlyphSlot ftGlyph)
 template <typename T>
 inline FTPoint FTBitmapFontImpl::RenderI(const T* string, const int len,
                                          FTPoint position, FTPoint spacing,
-                                         int renderMode)
+                                         int renderMode, float alpha)
 {
     // Protect glPixelStorei() calls (also in FTBitmapGlyphImpl::RenderImpl)
     glPushClientAttrib(GL_CLIENT_PIXEL_STORE_BIT);
@@ -75,7 +75,7 @@ inline FTPoint FTBitmapFontImpl::RenderI(const T* string, const int len,
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
     FTPoint tmp = FTFontImpl::Render(string, len,
-                                     position, spacing, renderMode);
+                                     position, spacing, renderMode, alpha);
 
     glPopClientAttrib();
 
@@ -85,16 +85,16 @@ inline FTPoint FTBitmapFontImpl::RenderI(const T* string, const int len,
 
 FTPoint FTBitmapFontImpl::Render(const char * string, const int len,
                                  FTPoint position, FTPoint spacing,
-                                 int renderMode)
+                                 int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTBitmapFontImpl::Render(const wchar_t * string, const int len,
                                  FTPoint position, FTPoint spacing,
-                                 int renderMode)
+                                 int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 

@@ -51,11 +51,11 @@ class FTOutlineFontImpl : public FTFontImpl
 
         virtual FTPoint Render(const char *s, const int len,
                                FTPoint position, FTPoint spacing,
-                               int renderMode);
+                               int renderMode, float alpha);
 
         virtual FTPoint Render(const wchar_t *s, const int len,
                                FTPoint position, FTPoint spacing,
-                               int renderMode);
+                               int renderMode, float alpha);
 
     private:
         /**
@@ -66,7 +66,7 @@ class FTOutlineFontImpl : public FTFontImpl
         /* Internal generic Render() implementation */
         template <typename T>
         inline FTPoint RenderI(const T *s, const int len,
-                               FTPoint position, FTPoint spacing, int mode);
+                               FTPoint position, FTPoint spacing, int mode, float alpha);
 };
 
 #endif // __FTOutlineFontImpl__

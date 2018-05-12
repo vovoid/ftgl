@@ -163,16 +163,16 @@ float FTFont::LineHeight() const
 
 
 FTPoint FTFont::Render(const char * string, const int len,
-                       FTPoint position, FTPoint spacing, int renderMode)
+                       FTPoint position, FTPoint spacing, int renderMode, float alpha)
 {
-    return impl->Render(string, len, position, spacing, renderMode);
+    return impl->Render(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTFont::Render(const wchar_t * string, const int len,
-                       FTPoint position, FTPoint spacing, int renderMode)
+                       FTPoint position, FTPoint spacing, int renderMode, float alpha)
 {
-    return impl->Render(string, len, position, spacing, renderMode);
+    return impl->Render(string, len, position, spacing, renderMode, alpha);
 }
 
 
@@ -480,7 +480,7 @@ float FTFontImpl::Advance(const wchar_t* string, const int len, FTPoint spacing)
 template <typename T>
 inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
                                    FTPoint position, FTPoint spacing,
-                                   int renderMode)
+                                   int renderMode, float alpha)
 {
     // for multibyte - we can't rely on sizeof(T) == character
     FTUnicodeStringItr<T> ustr(string);
@@ -511,7 +511,7 @@ inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
           thisChar = *ustr++;
           nextChar = *ustr;
           i++;
-          float a = (float)thisChar / 255.0f;
+          float a = ((float)thisChar / 255.0f) * alpha;
           glColor4f(r,g,b,a);
           continue;
         }
@@ -533,17 +533,17 @@ inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
 
 
 FTPoint FTFontImpl::Render(const char * string, const int len,
-                           FTPoint position, FTPoint spacing, int renderMode)
+                           FTPoint position, FTPoint spacing, int renderMode, float alpha)
 {
     return RenderI((const unsigned char *)string,
-                   len, position, spacing, renderMode);
+                   len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTFontImpl::Render(const wchar_t * string, const int len,
-                           FTPoint position, FTPoint spacing, int renderMode)
+                           FTPoint position, FTPoint spacing, int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 

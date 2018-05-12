@@ -227,7 +227,7 @@ inline wchar_t *StringCopy(wchar_t const *s, int len)
 template <typename T>
 inline FTPoint FTBufferFontImpl::RenderI(const T* string, const int len,
                                          FTPoint position, FTPoint spacing,
-                                         int renderMode)
+                                         int renderMode, float alpha)
 {
     const float padding = 3.0f;
     int width, height, texWidth, texHeight;
@@ -294,7 +294,7 @@ inline FTPoint FTBufferFontImpl::RenderI(const T* string, const int len,
         buffer->Pos(FTPoint(padding, padding) - bbox.Lower());
 
         advanceCache[cacheIndex] =
-              FTFontImpl::Render(string, len, FTPoint(), spacing, renderMode);
+              FTFontImpl::Render(string, len, FTPoint(), spacing, renderMode, alpha);
 
         glBindTexture(GL_TEXTURE_2D, idCache[cacheIndex]);
 
@@ -337,16 +337,16 @@ inline FTPoint FTBufferFontImpl::RenderI(const T* string, const int len,
 
 FTPoint FTBufferFontImpl::Render(const char * string, const int len,
                                  FTPoint position, FTPoint spacing,
-                                 int renderMode)
+                                 int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
 
 FTPoint FTBufferFontImpl::Render(const wchar_t * string, const int len,
                                  FTPoint position, FTPoint spacing,
-                                 int renderMode)
+                                 int renderMode, float alpha)
 {
-    return RenderI(string, len, position, spacing, renderMode);
+    return RenderI(string, len, position, spacing, renderMode, alpha);
 }
 
