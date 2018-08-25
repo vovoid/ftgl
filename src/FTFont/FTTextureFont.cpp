@@ -179,6 +179,9 @@ void FTTextureFontImpl::CalculateTextureSize()
         assert(maximumGLTextureSize); // Indicates an invalid OpenGL context
     }
 
+    if (maximumGLTextureSize > 16386)
+      maximumGLTextureSize = 16386;
+
     // Texture width required for numGlyphs glyphs. Will probably not be
     // large enough, but we try to fit as many glyphs in one line as possible
     textureWidth = ClampSize(glyphWidth * numGlyphs + padding * 2,
