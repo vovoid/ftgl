@@ -491,7 +491,7 @@ inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
         unsigned int nextChar = *ustr;
 
         if (
-          thisChar == 1 && dynamic_cast<FTTextureFontImpl*>(this)
+          thisChar == 1 && (dynamic_cast<FTTextureFontImpl*>(this)||dynamic_cast<FTPolygonFontImpl*>(this))
           ||
           thisChar == 2 && dynamic_cast<FTOutlineFontImpl*>(this)
         )
