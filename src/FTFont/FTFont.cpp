@@ -485,13 +485,19 @@ inline FTPoint FTFontImpl::RenderI(const T* string, const int len,
     // for multibyte - we can't rely on sizeof(T) == character
     FTUnicodeStringItr<T> ustr(string);
 
+    bool is_regular_font = dynamic_cast<FTTextureFontImpl*>(this)
+        ||
+        dynamic_cast<FTPolygonFontImpl*>(this)
+        ||
+        dynamic_cast<FTOutlineFontImpl*>(this);
+
     for(int i = 0; (len < 0 && *ustr) || (len >= 0 && i < len); i++)
     {
         unsigned int thisChar = *ustr++;
         unsigned int nextChar = *ustr;
 
         if (
-          thisChar == 1 && (dynamic_cast<FTTextureFontImpl*>(this)||dynamic_cast<FTPolygonFontImpl*>(this))
+          thisChar == 1 && is_regular_font
           ||
           thisChar == 2 && dynamic_cast<FTOutlineFontImpl*>(this)
         )
