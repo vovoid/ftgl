@@ -29,6 +29,7 @@
 
 #include "FTInternals.h"
 #include "FTVectoriser.h"
+#include <cmath>
 
 #ifndef CALLBACK
 #define CALLBACK
@@ -318,9 +319,9 @@ void FTVectoriser::MakeMesh(FTGL_DOUBLE zNormal, int outsetType, float outsetSiz
                     // XXX: gluTessVertex doesn't modify the data but does not
                     // specify "const" in its prototype, so we cannot cast to
                     // a const type.
-                    if (isnan(d[0]))
+                    if (std::isnan(d[0]))
                       continue;
-                    if (isnan(d[1]))
+                    if (std::isnan(d[1]))
                       continue;
                     gluTessVertex(tobj, const_cast<GLdouble*>(d), (GLvoid *)d);
                 }
